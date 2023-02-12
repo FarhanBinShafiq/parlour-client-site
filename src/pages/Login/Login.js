@@ -1,17 +1,47 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+ 
 import { AuthContext } from '../../contexts/AuthProvider';
+import Loading from '../Sharedpages/Loading/Loading';
 
 const Login = () => {
 
     const { register, handleSubmit } = useForm();
-    const { signInWithGoogle,signin } = useContext(AuthContext)
+    const { signInWithGoogle,signIn,loading } = useContext(AuthContext)
+        const [signinError,setSigninError]=useState('')
 
 
+    
+      //Navigate after log in
+      const location=useLocation();
+      const navigate=useNavigate()
+
+      const from=location.state?.from?.pathname || '/'
+   
+    
+      if(loading){
+        return <Loading></Loading>
+      }
+ 
+   
+   
     const onSubmit = data => {
-        console.log(data);
-        signin(data.email,data.password)
-        
+      console.log(data)
+      setSigninError('')
+      signIn(data.email,data.password)
+      .then(result=>{
+        const user=result.user;
+        console.log(user)
+        //navigation part
+        navigate(from,{replace:true})
+      })
+
+        .catch(error => {
+      console.log(error.message)
+      setSigninError(error.message)
+    
+  })
         
     }
 
@@ -36,9 +66,12 @@ const Login = () => {
                                 <input {...register("password", { required: true, maxLength: 20 })} className="border border-gray-300 shadow p-3 w-full rounded mb-" />
                             </div>
                             <input type='Submit' className="block w-full bg-info text-white font-bold p-4 rounded-lg" />
-
+                            {
+                                signinError && <p className='text-red-500'>{signinError}</p>
+                            }
                         </form>
-
+                            
+                             <p>If are a new user ? <Link to="/signup" className='text-teal-600 bg-black uppercase '>Create Account</Link> </p>
                         <div className="divider text-info text-xl lg:text-3xl font-bold w-full border-opacity-50">OR</div>
 
                         <div className='sm:grid sm:grid-cols-1  lg:flex gap-8  place-items-center justify-center '>

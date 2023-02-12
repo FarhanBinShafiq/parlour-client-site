@@ -1,7 +1,8 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import app from '../firebase/firebase.config'
-import { useSignInWithEmailAndPassword, useSignInWithGoogle, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { getAuth } from "firebase/auth";
+import {useSignInWithGoogle} from 'react-firebase-hooks/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+ 
 
 
 export const AuthContext = createContext();
@@ -10,33 +11,54 @@ const auth = getAuth(app);
 
 
 const AuthProvider = ({ children }) => {
+    const [user,setUser]=useState(null)
+    const [loading,setLoading]=useState(true)
 
-    const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
-    const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
-    const [loading, setLoading] = useState(true)
-
-    //create account with email and password
-
-    const createAccount = (email,password) => {
-        setLoading(true)
-        return createUserWithEmailAndPassword(email, password)
-    }
-
-    //Log in with email
-
-    const signin = (email, password) => {
-        setLoading(true)
-        return signInWithEmailAndPassword(email, password)
-    }
 
     //Google
     const [signInWithGoogle] = useSignInWithGoogle(auth)
 
+    //Crate Account
+
+    const createUser=(email,password)=>{
+        setLoading(true)
+       return createUserWithEmailAndPassword(auth,email,password)
+    }
+  
+    //SignIn Account with email and passowrd
+    const signIn=(email,password)=>{
+        setLoading(true);
+        return signInWithEmailAndPassword(auth,email,password)
+    }
+
+    ///Log Out
+    const logOut=()=>{
+             setLoading(true)
+        return signOut(auth)
+    }
+
+    //outhtate change for ensuring the current user
+
+    useEffect(()=>{
+     const unsubscribe = onAuthStateChanged(auth,currentUser=>{
+            console.log('User Observing')
+            setUser(currentUser)
+            setLoading(false)
+        })
+    }
+    
+    ,[])
+    
+    //update user porfile
+
+    const updateUser=(userInfo)=>{
+      return  updateProfile(user,userInfo)
+    }
 
     ///Value 
 
     const authInfo = {
-        signInWithGoogle, loading, signin, createAccount
+        signInWithGoogle,createUser,signIn,logOut,user,updateUser,loading
     }
 
     return (

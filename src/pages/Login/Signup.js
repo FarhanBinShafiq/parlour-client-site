@@ -1,15 +1,42 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
+import { toast } from 'react-hot-toast';
+ 
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 const Signup = () => {
 
     const { register, handleSubmit } = useForm();
-    const { signInWithGoogle,createAccount } = useContext(AuthContext)
+    const { signInWithGoogle,createUser,updateUser} = useContext(AuthContext)
+    const [signupError,setSignupError]=useState('')
+    
 
+    const handleCreateAccount = async data => {
+         console.log(data)
+         setSignupError('')
+         createUser(data.email,data.password)
+         .then(result=>{
+            const user=result.user;
+            console.log(user)
+            toast('User Created Successfully')
+            //user proile update
+            const updateInfo={
+                displayName:data.name
+            }
+            updateUser(updateInfo)
+            .then(()=>{})
+            .catch(err=>{
+                console.log(err)
+            })
 
-    const handleCreateAccount = data => {
-        console.log(data.name,data.email,data.password )   
-        createAccount(data.email,data.password) 
+         })
+
+         .catch(error => {
+      console.log(error.message)
+      setSignupError(error.message)
+    
+  })
+       
        }
 
     return (
@@ -36,10 +63,15 @@ const Signup = () => {
                                 <label htmlFor="password" className="block mb-2 font-bold text-gray-600">Password</label>
 
                                 <input {...register("password", { required: true, maxLength: 20 })} className="border border-gray-300 shadow p-3 w-full rounded mb-" />
+                                
                             </div>
                             <input type='Submit' className="block w-full bg-info text-white font-bold p-4 rounded-lg" />
-
+                             {
+                                signupError && <p className='text-red-600'>{signupError}</p>
+                             }
                         </form>
+                       
+                        <p>Already have an account ? <Link to="/login" className='text-teal-600 bg-black uppercase '>Login</Link> </p>
 
                         <div className="divider text-info text-xl lg:text-3xl font-bold w-full border-opacity-50">OR</div>
 
