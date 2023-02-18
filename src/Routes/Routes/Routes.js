@@ -1,6 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
+import AddProducts from '../../pages/dashboard/MangeProducts/ManageProducts'
+import ManageServices from '../../pages/dashboard/ManageServices/MangeServices'
+import ManageProducts from "../../pages/dashboard/MangeProducts/ManageProducts";
+import AddServices from "../../pages/dashboard/AddServices/AddServices";
 import Dashboard from "../../pages/dashboard/dashboard/Dashboard";
 import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
@@ -41,7 +45,24 @@ const router = createBrowserRouter([{
             {
                 path:'/dashboard',
                 element:<Dashboard></Dashboard>
-            }
+            },
+            {
+                path:'/dashboard/addservices',
+                element:<AddServices></AddServices>
+            },
+            {
+                path:'/dashboard/manageservices',
+                element:<ManageServices></ManageServices>
+            },
+
+            {
+                path:'/dashboard/addproducts',
+                element:<AddProducts></AddProducts>
+            },
+            {
+                path:'/dashboard/manageservices',
+                element:<ManageProducts></ManageProducts>
+            },
            ]
             
     },
