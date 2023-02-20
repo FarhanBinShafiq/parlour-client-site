@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import { AiOutlineMenu } from "react-icons/ai";
 import './Navbar.css'
 
 const Navbar = () => {
@@ -126,7 +127,10 @@ const Navbar = () => {
                             {menuItems}
                     </ul>
                     <div className="nav-icon" onClick={handleClick}>
-                        <i className={click ? "fa fa-times" : "fa fa-bars"}></i>
+ 
+                           
+                        <AiOutlineMenu/>  
+
                     </div>
                 </div>
             </nav>
