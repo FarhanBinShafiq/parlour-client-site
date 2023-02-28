@@ -1,112 +1,137 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useQuery } from 'react-query';
+import ConfirmationModal from '../../Sharedpages/ConfirmationModal/ConfirmationModal';
+import Loading from '../../Sharedpages/Loading/Loading';
+
+const MangeProducts = () => {
+    const [deletingProduct, setDeletingProduct] = useState(null)
+
+    const { data: products, isLoading, refetch } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            try {
+                const res = await fetch('http://localhost:5000/products')
+                const data = await res.json();
+                return data;
 
 
-const ManageProducts = () => {
-    const { register, handleSubmit } = useForm();
+            } catch (error) {
 
-    const handleAddService = data => {
-        console.log(data)
-        //image
-        const imageHostKey = process.env.React_APP_imgbb_key
-        const image = data.image[0] ;
-        const formData=new FormData()
-        formData.append('image',image)
-        const url=`https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
-          
-        fetch(url,{
-            method:'POST',
-            body:formData
-        })
-
-        .then(res=>res.json())
-        .then(imageData=>{
-            console.log(imageData)
-            if(imageData.success){
-                console.log(imageData.data.url);
-                const  product = {
-                    name: data.productname,
-                    
-                    price: data.price,
-                    image:imageData.data.url
-                }
-
-                fetch('http://localhost:5000/addservice', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-        
-                    body: JSON.stringify(product)
-                })
-        
             }
+        }
+    })
+
+    const closeModal = () => {
+        setDeletingProduct(null)
+    }
+
+    //Handle deleting Service
+
+    const handleDeleteProduct = (product) => {
+        console.log('Deleted')
+        console.log(deletingProduct.name)
+        fetch(`http://localhost:5000/products/${product._id}`, {
+            method: 'DELETE'
         })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    console.log(data)
+                    refetch();
+                    toast.success(`${product.name} deleted Successfully`)
 
-       
-       
-
+                }
+            })
 
     }
 
+
+
+
+
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+
     return (
         <div>
-            <div className="bg-blue-200  min-h-screen flex items-center pl-3 pr-3 ">
-                <div className="w-full">
-                    <h1 className="mb-5 text-xl lg:text-5xl font-bold text-info uppercase text-center">Add a product</h1>
-                    <div className="bg-black p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
-                        {/*React Hook form*/}
-                        <form onSubmit={handleSubmit(handleAddService)}>
-                            <div className="mb-5">
-                                <label htmlFor="productname" className="block mb-2 font-bold  text-gray-600">Product Name</label>
-                                <input {...register("productename", { required: true, maxLength: 20 })} className="border border-gray-300 shadow p-3 w-full rounded mb-" />
-                            </div>
+            <h2 className=' text-3xl uppercase text-center'>Total Services:{products?.length}</h2>
+            <div className="overflow-x-auto w-full">
+                <table className="table w-full">
 
-                       
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Service Image</th>
+                            <th>Service Name</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                            <div className="mb-5">
-                                <label htmlFor="price" className="block mb-2 font-bold  text-gray-600">Price</label>
-                                <input {...register("price", { required: true, maxLength: 20 })} className="border border-gray-300 shadow p-3 w-full rounded mb-" />
-                            </div>
+                        {
+                            products.map((product, i) =>
+                                <tr>
+                                    <th>{i + 1}</th>
+                                    <td>
+                                        <div className="flex items-center space-x-3">
+                                            <div className="avatar">
+                                                <div className="mask mask-squircle w-12 h-12">
+                                                    <img src={product.image} alt="Avatar Tailwind CSS Component" />
+                                                </div>
+                                            </div>
 
+                                        </div>
+                                    </td>
 
-                            <div className="form-control w-full max-w-xs">
-
-                                <label className="label">
-                                <label htmlFor="image" className="block mb-2 font-bold  text-gray-600">Image</label>
-
-                                </label>
-
-                                <input type="file"
-                                    {...register("image", {
-                                        required: {
-                                            value: true, message: "Photo is Required"
-                                        }
-                                    })}
-                                    placeholder="Your Photo"
-                                    className="input input-bordered w-full max-w-xs" />
+                                    <td>
 
 
-                            </div><br/>
+                                        <div>
+                                            <div className="font-bold">{product.name}</div>
 
 
+                                        </div>
+                                    </td>
+
+                                    <td>$ <span>{product.price}</span></td>
+                                    <th>
+                                        <label className="btn   btn-xs"
+                                            onClick={() => setDeletingProduct(product)}
+                                            htmlFor="confirmation-modal"
+                                        >Delete</label>
+                                    </th>
+                                </tr>
+
+                            )
+                        }
+
+                    </tbody>
 
 
-                            <input type='Submit' className="block w-full bg-info text-white font-bold p-4 rounded-lg" />
-
-                        </form>
-
-
-
-
-
-
-                    </div>
-                </div>
+                </table>
             </div>
+
+
+            {
+                deletingProduct && <ConfirmationModal
+                    title={`Are you sure ,Want to delete the this service ?`}
+                    message={`if you delete ${deletingProduct.name}.It can not be undone.`}
+                    closeModal={closeModal}
+                    successAction={handleDeleteProduct}
+                    successButtonName='Delete'
+                    modalData={deletingProduct}
+                
+                ></ConfirmationModal>
+            }
+
 
         </div>
     );
 };
 
-export default ManageProducts;
+export default MangeProducts;
