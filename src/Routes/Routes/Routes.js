@@ -10,6 +10,8 @@ import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
 import Signup from "../../pages/Login/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Products from "../../pages/Products/Products";
+import Services from "../../pages/Services/Services";
 
 
 const router = createBrowserRouter([{
@@ -22,17 +24,22 @@ const router = createBrowserRouter([{
             },
             {
                 path: '/home',
-                element: < Home > </Home>
+                element: < Home /> 
+            },
+            {
+                path: '/products',
+                element: < Products/ >
+            },
+            {
+                path: '/services',
+                element: < Services/ >
             },
             {
                 path: '/login',
-                element: < Login > </Login>
+                element: < Login />
             },
 
-            {
-                path: '/signup',
-                element: < Signup/ >
-            },
+            
 ]
     },
 

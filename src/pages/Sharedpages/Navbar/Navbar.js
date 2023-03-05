@@ -44,12 +44,23 @@ const Navbar = () => {
                         <li className="nav-item">
                             <NavLink
                                 exact
-                                to="/blog"
+                                to="/products"
 
                                 className="nav-links"
                                 onClick={click ? handleClick : null}
                             >
-                                Blog
+                                Products
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink
+                                exact
+                                to="/services"
+
+                                className="nav-links"
+                                onClick={click ? handleClick : null}
+                            >
+                                Services
                             </NavLink>
                         </li>
                         <li className="nav-item">
@@ -120,7 +131,7 @@ const Navbar = () => {
             <nav className="navbar" onClick={e => e.stopPropagation()}>
                 <div className="nav-container">
                     <NavLink exact to="/" className="nav-logo">
-                        CodeBucks
+                        Parlour
                         <i className="fa fa-code"></i>
                     </NavLink>
                     <ul className={click ? "nav-menu active" : "nav-menu"}>

@@ -65,8 +65,8 @@ const MangeProducts = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Service Image</th>
-                            <th>Service Name</th>
+                            <th>Product Image</th>
+                            <th>Product Name</th>
                             <th>Price</th>
                             <th></th>
                         </tr>
