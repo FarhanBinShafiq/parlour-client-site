@@ -3,7 +3,7 @@ import { AiOutlineStar } from "react-icons/ai";
 
 const HomeTestimonial = ({ testimonial }) => {
     return (
-        <div >
+        <div className='py-4'>
 
             <div className="carousel-item w-86 p-5">
                 <div className="card card-side bg-base-100 shadow-xl">
@@ -11,7 +11,7 @@ const HomeTestimonial = ({ testimonial }) => {
                     <div className="card-body">
                         <h2 className="card-title text-info uppercase">{testimonial.name}</h2>
                         <p className='font-bold'>{testimonial.position}</p>
-                        <p>{testimonial.desc}</p>
+                        <p className='lowercase'>{testimonial.desc}</p>
                          <div className='flex'>
                             <AiOutlineStar/> <AiOutlineStar/> <AiOutlineStar/> <AiOutlineStar/>
                          </div>

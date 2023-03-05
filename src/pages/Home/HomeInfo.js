@@ -11,7 +11,7 @@ const HomeInfo = () => {
                         <div>
                             <h1 className="text-2xl lg:text-5xl font-bold">Let us handle your </h1>
                             <h1 className="text-2xl lg:text-5xl font-bold">screen <span className='text-info font-bold'>Professionally.</span></h1>
-                            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                            <p className="py-6 text-xl lowercase ">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
 
                             <div className='flex gap-8'>
                                 <div>

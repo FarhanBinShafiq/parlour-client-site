@@ -53,7 +53,7 @@ const HomeTestimonials = () => {
     ]
 
     return (
-        <div className='my-10 px-8'>
+        <div className='my-10 px-6'>
             <h1 className='text-2xl lg:text-5xl font-bold text-center'>Testimonials</h1>
             <div className='grid grid-cols-1  lg:grid-cols-3 md:grid-cols-2 gap-3 my-5 '>
 

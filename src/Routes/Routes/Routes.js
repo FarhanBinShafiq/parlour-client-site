@@ -12,6 +12,8 @@ import Signup from "../../pages/Login/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Products from "../../pages/Products/Products";
 import Services from "../../pages/Services/Services";
+ 
+import About from "../../pages/About/About";
 
 
 const router = createBrowserRouter([{
@@ -27,6 +29,10 @@ const router = createBrowserRouter([{
                 element: < Home /> 
             },
             {
+                path: '/about',
+                element: < About /> 
+            },
+            {
                 path: '/products',
                 element: < Products/ >
             },
@@ -37,6 +43,10 @@ const router = createBrowserRouter([{
             {
                 path: '/login',
                 element: < Login />
+            },
+            {
+                path: '/signup',
+                element: < Signup/>
             },
 
             

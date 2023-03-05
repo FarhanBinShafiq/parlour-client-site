@@ -65,7 +65,7 @@ const Login = () => {
 
                                 <input {...register("password", { required: true, maxLength: 20 })} className="border border-gray-300 shadow p-3 w-full rounded mb-" />
                             </div>
-                            <input type='Submit' className="block w-full bg-info text-white font-bold p-4 rounded-lg" />
+                            <input type='submit' value='Log in' className="block w-full bg-info text-white font-bold p-4 rounded-lg" />
                             {
                                 signinError && <p className='text-red-500'>{signinError}</p>
                             }

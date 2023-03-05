@@ -36,8 +36,8 @@ const HomeServices = () => {
     ]
 
     return (
-        <div className='my-10 px-8'>
-            <h1 className='text-center text-2xl font-bold lg:text-5xl'>Our Awesome <span className='text-info'>Services</span></h1>
+        <div className='my-10 px-6'>
+            <h1 className='text-center text-xl font-bold lg:text-5xl'>Our Awesome <span className='text-info'>Services</span></h1>
 
             <div className='grid grid-cols-1  lg:grid-cols-3 md:grid-cols-2 gap-3 my-5'>
                 {
@@ -49,7 +49,7 @@ const HomeServices = () => {
 
             <div className='grid place-items-center'>
 
-                <button className='btn btn-info'><Link to='/'>Explore More</Link></button>
+                <button className='btn btn-info'><Link to='/services'>Explore More</Link></button>
             </div>
 
         </div>
