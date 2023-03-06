@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
  
 import image from '../../assets/images/about_bg.jpg'
-import Map from '../Sharedpages/Map/Map';
+ 
 import AboutBanner from './AboutBanner';
 import AboutInfo from './AboutInfo';
 import AboutValues from './AboutValues';

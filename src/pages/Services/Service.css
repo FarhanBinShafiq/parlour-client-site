@@ -1,0 +1,16 @@
+.pagination {
+    margin: 30px;
+
+}
+
+.pagination button {
+    background-color: rgb(26, 20, 17);
+    padding: 0 10px;
+    color: aliceblue;
+    margin-right: 20px;
+}
+
+.pagination .selected {
+    background-color: brown;
+    color: yellow;
+}

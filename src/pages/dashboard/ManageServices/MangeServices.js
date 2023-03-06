@@ -13,7 +13,7 @@ const MangeServices = () => {
             try {
                 const res = await fetch('http://localhost:5000/services')
                 const data = await res.json();
-                return data;
+                return data.serviceOptions;
 
 
             } catch (error) {
