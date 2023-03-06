@@ -8,7 +8,7 @@ import HomeTestimonials from './HomeTestimonials';
 
 const Home = () => {
     return (
-        <div className=' font-serif lg:px-24 md:px-16 px-0'>
+        <div className=' font-serif lg:px-20 md:px-16 px-0'>
             <HomeBanner />
             <HomeServices />
             <HomeInfo/>
