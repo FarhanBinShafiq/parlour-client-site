@@ -15,12 +15,12 @@ const Services = () => {
         fetch(`http://localhost:5000/services?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+             
                 setServices(data.serviceOptions)
                 const count = data.count
                 const pageNumber = Math.ceil(count / 6)
                 setPageCount(pageNumber)
-                console.log(count)
+            
             })
     }, [page])
 
