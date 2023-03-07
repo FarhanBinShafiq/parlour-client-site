@@ -1,9 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddServices = () => {
     const { register, handleSubmit } = useForm();
+    const navigate=useNavigate()
 
     const handleAddService = data => {
         console.log(data)
@@ -31,13 +34,20 @@ const AddServices = () => {
                     image:imageData.data.url
                 }
 
-                fetch('http://localhost:5000/addservice', {
+                fetch('https://parlour-server.up.railway.app/addservice', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
         
                     body: JSON.stringify(service)
+                })
+
+                .then(res=>res.json())
+                .then(result=>{
+                   console.log(result)
+                   toast.success(`${data.servicename} Service is added successfully`)
+                   navigate('/dashboard/manageservices')
                 })
         
             }

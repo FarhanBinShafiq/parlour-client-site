@@ -15,7 +15,7 @@ const HomeBanner = () => {
 
                 <div id="item1" className="carousel-item w-full">
 
-                    <div className="hero min-h-screen bg-base-300">
+                    <div className="hero min-h-screen">
                         <div className="hero-content flex-col lg:flex-row-reverse">
                             <img src={homebanner1} className="lg:max-w-sm rounded-lg shadow-2xl" alt='' />
                             <div>

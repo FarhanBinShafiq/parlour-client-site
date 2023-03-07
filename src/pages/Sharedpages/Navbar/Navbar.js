@@ -131,8 +131,8 @@ const Navbar = () => {
             <nav className="navbar" onClick={e => e.stopPropagation()}>
                 <div className="nav-container">
                     <NavLink exact to="/" className="nav-logo">
-                        Parlour
-                        <i className="fa fa-code"></i>
+                          Jenny's Parlour
+               
                     </NavLink>
                     <ul className={click ? "nav-menu active" : "nav-menu"}>
                             {menuItems}

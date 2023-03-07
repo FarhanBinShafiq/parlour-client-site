@@ -10,8 +10,8 @@ const Product = (props) => {
                     <img src={image} alt="Shoes" className="rounded-xl h-60" />
                 </figure>
                 <div className="card-body font-mono  items-center text-center">
-                    <h2 className="card-title uppercase ">{name}</h2>
-                    <p>price: $ <span>{price}</span></p>
+                    <h2 className="card-title text-info uppercase ">{name}</h2>
+                    <p >Price: $ <span>{price}</span></p>
                     
                     <div className="card-actions">
                         <Link to='/'> <button className="btn btn-primary text-white font-bold uppercase bg-gradient-to-r from-info to-primary">Add To Cart</button></Link>
@@ -23,3 +23,5 @@ const Product = (props) => {
 };
 
 export default Product;
+
+ 

@@ -12,7 +12,7 @@ const Services = () => {
     const size = 6
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services?page=${page}&&size=${size}`)
+        fetch(`https://parlour-server.up.railway.app/services?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
              
@@ -27,9 +27,9 @@ const Services = () => {
     return (
         <div className='px-20'>
             <div className=' h-40  lg:h-60' style={{ backgroundImage: `url(${image})` }}>
-                <p className=' font-mono  uppercase  text-sm lg:text-xl text-opacity-100  flex items-center justify-center pt-20 font-bold  text-teal-600'><span className='border-b-4 border-indigo-500 '> <Link to='/home'>Home</Link> / products</span></p>
+                <p className=' font-mono  uppercase  text-sm lg:text-xl text-opacity-100  flex items-center justify-center pt-20 font-bold  text-info'><span className='border-b-4 border-indigo-500 '> <Link to='/home'>Home</Link> / Services</span></p>
             </div>
-            <h3 className=' text-sm lg:text-3xl text-center font-mono pt-4 font-bold  text-teal-600 '> Our Services </h3>
+            <h3 className=' text-sm lg:text-3xl text-center font-mono pt-4 font-bold  text-info '> Our Services </h3>
 
             <div className='grid grid-cols-1  px-8 lg:grid-cols-3 gap-6'>
                 {

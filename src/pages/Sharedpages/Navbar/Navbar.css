@@ -45,7 +45,9 @@
 }
 
 .nav-logo {
-  color: #f5b921;
+  color: #f609bf;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-style: italic;
   align-items: center;
   margin-left: 20px;
   cursor: pointer;

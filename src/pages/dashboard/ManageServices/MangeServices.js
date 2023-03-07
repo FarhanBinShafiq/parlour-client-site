@@ -11,7 +11,7 @@ const MangeServices = () => {
         queryKey: ['serices'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/services')
+                const res = await fetch('https://parlour-server.up.railway.app/services')
                 const data = await res.json();
                 return data.serviceOptions;
 
@@ -30,7 +30,7 @@ const MangeServices = () => {
 
     const handleDeleteService = (service) => {
         console.log('Deleted')
-        fetch(`http://localhost:5000/services/${service._id}`, {
+        fetch(`https://parlour-server.up.railway.app/services/${service._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

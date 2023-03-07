@@ -1,50 +1,60 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddProducts = () => {
     const { register, handleSubmit } = useForm();
+    const navigate=useNavigate()
 
     const handleAddProducts = data => {
         console.log(data)
         //image
         const imageHostKey = process.env.React_APP_imgbb_key
-        const image = data.image[0] ;
-        const formData=new FormData()
-        formData.append('image',image)
-        const url=`https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
-          
-        fetch(url,{
-            method:'POST',
-            body:formData
+        const image = data.image[0];
+        const formData = new FormData()
+        formData.append('image', image)
+        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
         })
 
-        .then(res=>res.json())
-        .then(imageData=>{
-            console.log(imageData)
-            if(imageData.success){
-                console.log(imageData.data.url);
-                const  product = {
-                    name: data.productname,
-                    
-                    price: data.price,
-                    image:imageData.data.url
+            .then(res => res.json())
+            .then(imageData => {
+                console.log(imageData)
+                if (imageData.success) {
+                    console.log(imageData.data.url);
+                    const product = {
+                        name: data.productname,
+
+                        price: data.price,
+                        image: imageData.data.url
+                    }
+
+                    fetch('https://parlour-server.up.railway.app/addproduct', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+
+                        body: JSON.stringify(product)
+                    })
+
+                        .then(res => res.json())
+                        .then(result => {
+                            console.log(result)
+                            toast.success(`${data.productname} Product is added successfully`)
+                            navigate('/dashboard/manageproducts')
+                        })
+
                 }
+            })
 
-                fetch('http://localhost:5000/addproduct', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-        
-                    body: JSON.stringify(product)
-                })
-        
-            }
-        })
 
-       
-       
+
 
 
     }
@@ -62,7 +72,7 @@ const AddProducts = () => {
                                 <input {...register("productname", { required: true, maxLength: 20 })} className="border border-gray-300 shadow p-3 w-full rounded mb-" />
                             </div>
 
-                       
+
 
                             <div className="mb-5">
                                 <label htmlFor="price" className="block mb-2 font-bold  text-gray-600">Price</label>
@@ -73,7 +83,7 @@ const AddProducts = () => {
                             <div className="form-control w-full max-w-xs">
 
                                 <label className="label">
-                                <label htmlFor="image" className="block mb-2 font-bold  text-gray-600">Image</label>
+                                    <label htmlFor="image" className="block mb-2 font-bold  text-gray-600">Image</label>
 
                                 </label>
 
@@ -87,7 +97,7 @@ const AddProducts = () => {
                                     className="input input-bordered w-full max-w-xs" />
 
 
-                            </div><br/>
+                            </div><br />
 
 
 

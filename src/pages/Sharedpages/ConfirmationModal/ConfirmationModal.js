@@ -13,7 +13,7 @@ const ConfirmationModal = ({title,message,closeModal, successButtonName,modalDat
                          className="btn btn-primary"
                          onClick={()=>successAction(modalData)}
                          >{successButtonName}</label>
-                        <button onClick={closeModal} className="btn btn-outline">Cancel</button>
+                        <button onClick={closeModal} className="btn mx-3 btn-outline">Cancel</button>
                     </div>
                 </div>
             </div>
