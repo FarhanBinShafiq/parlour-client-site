@@ -11,14 +11,14 @@ const HomeServices = () => {
     const services = [
         {
             id: 1,
-            img: img1,
+            _img: img1,
             serviceName: 'Anti Age Face Treatment',
             price: 199,
             desc: 'We craft stunning and amazing web UI, using a well drrafted UX to fit your product.'
         },
 
         {
-            id: 2,
+            _id: 2,
             img: img2,
             serviceName: 'Hair Color & Styleing',
             price: 150,
@@ -26,7 +26,7 @@ const HomeServices = () => {
         },
 
         {
-            id: 3,
+            _id: 3,
             img: img3,
             serviceName: 'Skin Care Treatment',
             price: 299,
@@ -41,8 +41,8 @@ const HomeServices = () => {
 
             <div className='grid grid-cols-1  lg:grid-cols-3 md:grid-cols-2 gap-3 my-5'>
                 {
-                    services.map(service =>
-                        <HomeService service={service}></HomeService>
+                    services.map((service,i) =>
+                        <HomeService key={i} service={service}></HomeService>
                     )
                 }
             </div>

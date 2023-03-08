@@ -8,42 +8,42 @@ const HomeTestimonials = () => {
 
     const testimonials = [
         {
-            id: 1,
+            _id: 1,
             image: avatar1,
             name: 'Nash Patrik',
             position:'CEO , Manpol',
             desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat '
         },
         {
-            id: 2,
+            _id: 2,
             image: avatar2,
             name: 'Miriam Barron',
             position:'CEO , Manpol',
             desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat '
         },
         {
-            id: 3,
+            _id: 3,
             image: avatar3,
             name: 'Bria Malone',
             position:'CEO , Manpol',
             desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat '
         },
         {
-            id: 4,
+            _id: 4,
             image: avatar1,
             name: 'Nash Patrik',
             position:'CEO , Manpol',
             desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat '
         },
         {
-            id: 5,
+            _id: 5,
             image: avatar2,
             name: 'Bria Malone',
             position:'CEO , Manpol',
             desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat '
         },
         {
-            id: 6,
+            _id: 6,
             image: avatar3,
             name: 'Cristiano onaldo',
             position:'CEO , Manpol',
@@ -60,9 +60,9 @@ const HomeTestimonials = () => {
 
 
                 {
-                    testimonials.map(testimonial =>
+                    testimonials.map((testimonial,i) =>
 
-                        <HomeTestimonial id="#item6" testimonial={testimonial}></HomeTestimonial>
+                        <HomeTestimonial key={i} id="#item6" testimonial={testimonial}></HomeTestimonial>
 
                     )
                 }

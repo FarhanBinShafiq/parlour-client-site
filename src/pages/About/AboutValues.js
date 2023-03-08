@@ -37,8 +37,8 @@ const AboutValues = () => {
 
             <div className='grid grid-cols-1  lg:grid-cols-3 md:grid-cols-2 gap-3 my-5'>
                 {
-                    values.map(value =>
-                        <Value value={value} key={value._id}></Value>
+                    values.map((value,i) =>
+                        <Value value={value} key={value.id}></Value>
                     )
                 }
             </div>
