@@ -34,7 +34,7 @@ const AddProducts = () => {
                         image: imageData.data.url
                     }
 
-                    fetch('https://parlour-server.up.railway.app/addproduct', {
+                    fetch('https://parlour-server.onrender.com/addproduct', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

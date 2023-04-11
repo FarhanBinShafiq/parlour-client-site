@@ -13,7 +13,7 @@ const Products = () => {
     const size = 6
 
     useEffect(() => {
-        fetch(`https://parlour-server.up.railway.app/products?page=${page}&&size=${size}`)
+        fetch(`https://parlour-server.onrender.com/products?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                  

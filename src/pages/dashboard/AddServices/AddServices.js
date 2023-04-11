@@ -34,7 +34,7 @@ const AddServices = () => {
                     image:imageData.data.url
                 }
 
-                fetch('https://parlour-server.up.railway.app/addservice', {
+                fetch('https://parlour-server.onrender.com/addservice', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

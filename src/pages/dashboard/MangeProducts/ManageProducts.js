@@ -11,7 +11,7 @@ const MangeProducts = () => {
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch('https://parlour-server.up.railway.app/products')
+                const res = await fetch('https://parlour-server.onrender.com/products')
                 const data = await res.json();
                 return data.products;
 
@@ -31,7 +31,7 @@ const MangeProducts = () => {
     const handleDeleteProduct = (product) => {
         console.log('Deleted')
         console.log(deletingProduct.name)
-        fetch(`https://parlour-server.up.railway.app/products/${product._id}`, {
+        fetch(`https://parlour-server.onrender.com/products/${product._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
