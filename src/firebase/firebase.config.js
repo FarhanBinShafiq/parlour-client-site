@@ -9,15 +9,15 @@ import { initializeApp } from "firebase/app";
 //   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 //   appId: process.env.REACT_APP_APP_ID
 // };
-
 const firebaseConfig = {
-  apiKey: "AIzaSyB5BUUf4rx3xhral-_YLtRthb49vmU5yDc",
-  authDomain: "parlour-website-authentication.firebaseapp.com",
-  projectId: "parlour-website-authentication",
-  storageBucket: "parlour-website-authentication.appspot.com",
-  messagingSenderId: "25820691119",
-  appId: "1:25820691119:web:03249ce3c3a1d88f74725a"
-}
+  apiKey: "AIzaSyDr1as8LnIJCYXVnnwyApB3FPpqonl9Opc",
+  authDomain: "parlour-website-authenti-56086.firebaseapp.com",
+  projectId: "parlour-website-authenti-56086",
+  storageBucket: "parlour-website-authenti-56086.appspot.com",
+  messagingSenderId: "474702120257",
+  appId: "1:474702120257:web:616e83cd7a87d39d1bcdc0"
+};
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export default app;
